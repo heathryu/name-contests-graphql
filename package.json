@@ -1,0 +1,9 @@
+{
+  "name": "name-contests-graphql",
+  "version": "0.1.0",
+  "description": "Example following Pluralsight Course - Building Scalable APIs with GraphQL",
+  "main": "index.js",
+  "repository": "https://github.com/heathryu/name-contests-graphql.git",
+  "author": "Heath Ryu",
+  "license": "MIT"
+}
