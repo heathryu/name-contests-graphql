@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  mongo:
+    build:
+      context: ./mongo
+      dockerfile: Dockerfile.mongo
+    image: nc-mongo:local
+    container_name: nc-mongo
+    ports:
+    - "27017:27017"
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile.postgres
+    image: nc-postgres:local
+    container_name: nc-postgres
+    ports:
+    - "5432:5432"
+    environment:
+    - POSTGRES_PASSWORd=ncadmin

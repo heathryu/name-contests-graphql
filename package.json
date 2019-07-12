@@ -7,7 +7,10 @@
   "author": "Heath Ryu",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon lib/index"
+    "start": "nodemon lib/index",
+    "prestart": "yarn db:up",
+    "db:up": "docker-compose -f docker/docker-compose-databases.yml up -d",
+    "db:down": "docker-compose -f docker/docker-compose-databases.yml down -v --rmi all"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
