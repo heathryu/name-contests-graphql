@@ -1,4 +1,13 @@
-const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require('graphql');
+const {
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLNonNull
+} = require('graphql');
+
+const pgdb = require('../database/pgdb');
+
+const MeType = require('./types/me');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -7,6 +16,16 @@ const RootQueryType = new GraphQLObjectType({
       type: GraphQLString,
       description: 'The *mandatory* hello world example',
       resolve: () => 'World'
+    },
+    me: {
+      type: MeType,
+      description: 'The current usere identified by an API key',
+      args: {
+        key: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve: (obj, args, { pgPool }) => {
+        return pgdb(pgPool).getUser(args.key);
+      }
     }
   }
 });
