@@ -12,6 +12,17 @@ module.exports = pgPool => {
           [apiKey]
         )
         .then(res => humps.camelizeKeys(res.rows[0]));
+    },
+    getContests(user) {
+      return pgPool
+        .query(
+          `
+          SELECT * FROM contests
+          WHERE created_by = $1
+          `,
+          [user.id]
+        )
+        .then(res => humps.camelizeKeys(res.rows));
     }
   };
 };
