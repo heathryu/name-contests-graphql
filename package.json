@@ -20,10 +20,12 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
+    "assert": "^2.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.8.0",
     "graphql": "^14.4.2",
     "humps": "^2.0.1",
+    "mongodb": "^3.3.0-beta2",
     "pg": "^7.11.0"
   }
 }
