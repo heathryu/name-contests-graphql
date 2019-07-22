@@ -7,7 +7,7 @@ const {
 
 const pgdb = require('../database/pgdb');
 
-const MeType = require('./types/me');
+const UserType = require('./types/user');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -18,12 +18,12 @@ const RootQueryType = new GraphQLObjectType({
       resolve: () => 'World'
     },
     me: {
-      type: MeType,
+      type: UserType,
       description: 'The current usere identified by an API key',
       args: {
         key: { type: new GraphQLNonNull(GraphQLString) }
       },
-      resolve: (obj, args, { pgPool }) => pgdb(pgPool).getUser(args.key)
+      resolve: (obj, args, { pgPool }) => pgdb(pgPool).getUserByApiKey(args.key)
     }
   }
 });
